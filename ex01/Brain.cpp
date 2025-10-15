@@ -48,6 +48,11 @@ void    Brain::setIdeas(int index, const std::string& idea)
 
 const std::string&    Brain::getIdeas(int index) const
 {
+    static std::string  empty = "";
+
     if (index >= 0 && index < 100)
         return (ideas[index]);
+
+    return (empty);
 }
+

@@ -2,7 +2,7 @@ NAME = SubTypePol
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp
+SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -10,7 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.cpp Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp
+%.o: %.cpp Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp Brain.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
