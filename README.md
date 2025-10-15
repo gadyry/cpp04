@@ -58,3 +58,13 @@ int main() {
 
 Dog destroyed
 Animal destroyed
+
+### 🧩 Abstract Class vs Interface :
+
+| **Feature**     | **Abstract Class (C++)**                                 | **Interface (Java / C++)**                                        |
+| --------------- | -------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Methods**     | Can have both implemented and pure virtual methods       | All methods are pure virtual (no implementation)                  |
+| **Inheritance** | Supports single or multiple inheritance                  | Simulates multiple inheritance in C++ via multiple abstract bases |
+| **Use**         | Used as a common base with partial shared code           | Defines a strict contract — no implementation                     |
+| **In C++**      | Declared with at least one pure virtual function (`= 0`) | A class with *only* pure virtual functions acts as an interface   |
+| **In Java**     | Declared with the `abstract` keyword                     | Declared with the `interface` keyword (dedicated syntax)          |
