@@ -14,7 +14,6 @@ Dog::Dog(const std::string& type) : Animal(type)
     std::cout << "Dog parameterized constructor called" << std::endl;
 }
 
-
 Dog::Dog(const Dog& other) : Animal(other)
 {
     brain = new Brain(*other.brain);
@@ -25,7 +24,11 @@ Dog::Dog(const Dog& other) : Animal(other)
 Dog&    Dog::operator=(const Dog& other)
 {
     if (this != &other)
+    {
         type = other.type;
+        delete brain;
+        brain = new Brain(*other.brain);
+    }
 
     return (*this);
 }
