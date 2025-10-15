@@ -1,8 +1,13 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
+#include "WrongCat.hpp"
+
 int main()
 {
+    std::cout << "================ sub-typing polymorphism : ================\n\n";
+
+    std::cout << "=============== Testing with a virtual method :   ==============\n"<<std::endl;
     const Animal* meta = new Animal();
 
     const Animal* j = new Dog();
@@ -15,9 +20,25 @@ int main()
     j->makeSound();
     meta->makeSound();
 
+    std::cout << "\n============== Testing without a virtual method : ================\n"<<std::endl;
+
+    const WrongAnimal* wrongMeta = new WrongAnimal();
+       
+    const WrongAnimal* w = new WrongCat();
+
+    std::cout << w->getType() << " " << std::endl;
+
+    w->makeSound(); //will output the WrongAnimal sound!
+    wrongMeta->makeSound();
+
+    std::cout << "\n---------------------------------------------------------------\n"<<std::endl;
+
     delete i;
     delete j;
     delete meta;
+
+    delete wrongMeta;
+    delete w;
 
     return (0);
 }

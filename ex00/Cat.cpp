@@ -8,9 +8,8 @@ Cat::Cat() : Animal()
 
 Cat::Cat(const std::string& type) : Animal(type)
 {
-    std::cout << "Dog parameterized constructor called" << std::endl;
+    std::cout << "Cat parameterized constructor called" << std::endl;
 }
-
 
 Cat::Cat(const Cat& other) : Animal(other)
 {
