@@ -7,8 +7,15 @@ class Dog : public Animal
 {
 public :
     // Canonic form :
-    dog();
-    dog(const std::string& name);
+    Dog();
+    Dog(const std::string& name);
+    Dog(const Dog& other);
+    Dog&    operator=(const Dog& other);
+
+    ~Dog();
+
+    // Special method :
+    void makeSound() const;
 };
 
 #endif
