@@ -11,7 +11,7 @@ public :
     // constructor  && destructor 
     WrongAnimal();
     WrongAnimal(const std::string& type);
-    WrongAnimal(const WrongAnimal& other);
+    WrongAnimal(const WrongAnimal& WrongAnimal);
     WrongAnimal& operator=(const WrongAnimal& other);
     ~WrongAnimal();
 
