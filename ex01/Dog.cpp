@@ -35,6 +35,7 @@ Dog&    Dog::operator=(const Dog& other)
 
 Dog::~Dog()
 {
+    delete brain;
     std::cout << "Dog destructor called" << std::endl;
 }
 
