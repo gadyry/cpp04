@@ -3,17 +3,21 @@
 Dog::Dog() : Animal()
 {
     type = "Dog";
+    brain = new Brain();
+
     std::cout << "Dog constructor called" << std::endl;
 }
 
 Dog::Dog(const std::string& type) : Animal(type)
 {
+    brain = new Brain();
     std::cout << "Dog parameterized constructor called" << std::endl;
 }
 
 
 Dog::Dog(const Dog& other) : Animal(other)
 {
+    brain = new Brain(*other.brain);
     *this = other;
     std::cout << "Dog copy constructor called" << std::endl;
 }

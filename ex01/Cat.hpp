@@ -2,9 +2,14 @@
 #define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
+
 
 class Cat : public Animal
 {
+private :
+    Brain*  brain;
+
 public :
     //  Arthodox Canonic form :
     Cat();
@@ -16,6 +21,8 @@ public :
 
     // Special method :
     void makeSound() const;
+
+    Brain* getBrain() const;
 };
 
 #endif
