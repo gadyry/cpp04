@@ -9,7 +9,7 @@ int main()
     std::cout << "================ sub-typing polymorphism : ================\n\n";
 
     std::cout << "=============== Testing with a virtual method :   ==============\n"<<std::endl;
-    const Animal* meta = new Animal();
+    // const Animal* meta = new Animal(); //  Not allowed
 
     const Animal* j = new Dog();
     const Animal* i = new Cat();
@@ -19,7 +19,7 @@ int main()
 
     i->makeSound(); //will output the cat sound!
     j->makeSound();
-    meta->makeSound();
+    // meta->makeSound();
 
     std::cout << "\n============== Testing without a virtual method : ================\n"<<std::endl;
 
@@ -36,7 +36,7 @@ int main()
 
     delete i;
     delete j;
-    delete meta;
+    // delete meta;
 
     delete wrongMeta;
     delete w;
