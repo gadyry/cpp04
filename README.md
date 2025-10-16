@@ -156,3 +156,70 @@ possible to create objects of type Shape, only its subclasses. In C++, we define
 a class as being abstract by specifying that one or more members of its functions
 are abstract, or pure virtual. A function is declared pure virtual by giving “=0” in place of its body. C++ does not allow the creation of an object that has one or more pure virtual functions. Thus, any derived class must provide concrete definitions
 for all pure virtual functions of the base class.
+
+
+### --- Class Diag. for ex03 : 
+
+                 +--------------------+
+                |    AMateria        |  <<Abstract>>
+                +--------------------+
+                | - _type: std::string |
+                +--------------------+
+                | + AMateria(type: std::string) |
+                | + virtual ~AMateria()          |
+                | + getType(): std::string const |
+                | + virtual clone() const = 0    |
+                | + virtual use(target: ICharacter&) |
+                +--------------------+
+                         ▲
+          ┌──────────────┼──────────────┐
+          │                               │
++------------------+         +------------------+
+|      Ice         |         |      Cure        |
++------------------+         +------------------+
+| (inherits type="ice") |   | (inherits type="cure") |
++------------------+         +------------------+
+| + clone(): AMateria* |     | + clone(): AMateria* |
+| + use(target)        |     | + use(target)        |
++------------------+         +------------------+
+
+
++---------------------+
+|   ICharacter        |  <<Interface>>
++---------------------+
+| + getName() const = 0        |
+| + equip(m: AMateria*) = 0    |
+| + unequip(idx: int) = 0      |
+| + use(idx: int, target: ICharacter&) = 0 |
++---------------------+
+          ▲
+          │
++---------------------+
+|   Character         |
++---------------------+
+| - _name: std::string    |
+| - _inventory[4]: AMateria* |
++---------------------+
+| + getName() const        |
+| + equip(m: AMateria*)    |
+| + unequip(idx: int)      |
+| + use(idx: int, target: ICharacter&) |
++---------------------+
+
+
++----------------------+
+|   IMateriaSource     |  <<Interface>>
++----------------------+
+| + learnMateria(m: AMateria*) = 0 |
+| + createMateria(type: std::string) = 0 |
++----------------------+
+          ▲
+          │
++----------------------+
+|   MateriaSource      |
++----------------------+
+| - _materias[4]: AMateria* |
++----------------------+
+| + learnMateria(m: AMateria*) |
+| + createMateria(type: std::string) |
++----------------------+
