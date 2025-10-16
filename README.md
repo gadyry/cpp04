@@ -160,28 +160,29 @@ for all pure virtual functions of the base class.
 
 ### --- Class Diag. for ex03 : 
 ```
-                 +--------------------+
-                |    AMateria        |  <<Abstract>>
-                +--------------------+
-                | - _type: std::string |
-                +--------------------+
-                | + AMateria(type: std::string) |
-                | + virtual ~AMateria()          |
-                | + getType(): std::string const |
-                | + virtual clone() const = 0    |
-                | + virtual use(target: ICharacter&) |
-                +--------------------+
-                         ▲
-          ┌──────────────┼──────────────┐
-          │                               │
-+------------------+         +------------------+
-|      Ice         |         |      Cure        |
-+------------------+         +------------------+
-| (inherits type="ice") |   | (inherits type="cure") |
-+------------------+         +------------------+
-| + clone(): AMateria* |     | + clone(): AMateria* |
-| + use(target)        |     | + use(target)        |
-+------------------+         +------------------+
+                +-------------------------------------+
+                |           <<Abstract>>              |
+                |                AMateria             |
+                +-------------------------------------+
+                | - _type: std::string                |
+                +-------------------------------------+
+                | + AMateria(type: std::string)       |
+                | + virtual ~AMateria()               |
+                | + getType(): std::string const      |
+                | + virtual clone() const = 0         |
+                | + virtual use(target: ICharacter&)  |
+                +-------------------------------------+
+                                    ▲
+                    ┌──────────────┼──────────────┐
+                    │                             │
+        +-----------------------+              +-------------------------+
+        |      Ice              |              |      Cure               |
+        +-----------------------+              +-------------------------+
+        | (inherits type="ice") |              | (inherits type="cure")  |
+        +-----------------------+              +-------------------------+
+        | + clone(): AMateria*  |              | + clone(): AMateria*    |
+        | + use(target)         |              | + use(target)           |
+        +-----------------------+              +-------------------------+
 
 
 +---------------------+
