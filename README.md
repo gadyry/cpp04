@@ -159,7 +159,7 @@ for all pure virtual functions of the base class.
 
 
 ### --- Class Diag. for ex03 : 
-
+```
                  +--------------------+
                 |    AMateria        |  <<Abstract>>
                 +--------------------+
@@ -223,3 +223,4 @@ for all pure virtual functions of the base class.
 | + learnMateria(m: AMateria*) |
 | + createMateria(type: std::string) |
 +----------------------+
+```
