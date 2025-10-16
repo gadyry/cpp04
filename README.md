@@ -136,3 +136,23 @@ public:
         | + getIdeas(i)             |
         | + setIdeas(i, value)      |
         +---------------------------+
+
+The above informal interface is not a valid construct in C++; it is just a documentation aid. In particular, it does not contain any data members or definitions of
+member functions. Nonetheless, it is useful, since it provides important information about a stack’s public member functions and how they are called.
+
+An abstract class in C++ is a class that is used only as a base class for inheritance; it cannot be used to create instances directly. At first the idea of creating a
+class that cannot be instantiated seems to be nonsense, but it is often very important.
+For example, suppose that we want to define a set of geometric shape classes, say,
+Circle, Rectangle, and Triangle. It is natural to derive these related classes from a
+single generic base class, say, Shape. Each of the derived classes will have a virtual
+member function draw, which draws the associated object. The rules of inheritance
+require that we define such a function for the base class, but it is unclear what such
+a function means for a generic shape.
+
+One way to handle this would be to define Shape::draw with an empty function
+body ({ }), which would be a rather unnatural solution. What is really desired
+here is some way to inform the compiler that the class Shape is abstract; it is not
+possible to create objects of type Shape, only its subclasses. In C++, we define
+a class as being abstract by specifying that one or more members of its functions
+are abstract, or pure virtual. A function is declared pure virtual by giving “=0” in place of its body. C++ does not allow the creation of an object that has one or more pure virtual functions. Thus, any derived class must provide concrete definitions
+for all pure virtual functions of the base class.
