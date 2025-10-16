@@ -88,16 +88,7 @@ public:
 };
 ```
 
-| Concept         | Definition                         | Example                                   |
-| --------------- | ---------------------------------- | ----------------------------------------- |
-| **Composition** | Strong ownership (“part-of”)       | `Cat` owns its `Brain` — deleted together |
-| **Aggregation** | Weak ownership (“associated-with”) | `Teacher` refers to `Classroom` not owned |
-| **Inheritance** | “Is-a” relationship                | `Cat` **is-a** `Animal`                   |
-
-
-
 ### 🧩 Abstract Class vs Interface :
-
 
 | **Feature**     | **Abstract Class (C++)**                                 | **Interface (Java / C++)**                                        |
 | --------------- | -------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -109,6 +100,7 @@ public:
 
 
 --> here’s a text-based Class diagram that clearly shows the relationships in your CPP04/ex02 setup — including inheritance and composition:
+
 
             +-------------------+
             |   <<abstract>>    |
