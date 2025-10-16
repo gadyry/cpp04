@@ -101,42 +101,42 @@ public:
 
 - here’s a text-based Class diagram that clearly shows the relationships in your CPP04/ex02 setup — including inheritance and composition:
 
-
-            +-------------------+
-            |   <<abstract>>    |
-            |      Animal       |
-            +-------------------+
-            | - type: std::string
-            +-------------------+
-            | + getType() const
-            | + makeSound() const = 0    ← pure virtual
-            | + ~Animal()                ← virtual destructor
-            +-------------------+
-                     ▲
-          ┌──────────┴──────────┐
-          │                     │
-+-------------------+   +-------------------+
-|       Cat         |   |       Dog         |
-+-------------------+   +-------------------+
-| - brain: Brain*   |   | - brain: Brain*   |
-+-------------------+   +-------------------+
-| + makeSound()     |   | + makeSound()     |
-| + getBrain()      |   | + getBrain()      |
-| + ...             |   | + ...             |
-+-------------------+   +-------------------+
-          │                     │
-          │  Composition        │  Composition
-          │  (owns and deletes) │  (owns and deletes)
-          ▼                     ▼
-        +---------------------------+
-        |           Brain           |  
-        +---------------------------+ 
-        | - ideas[100]: std::string |
-        +---------------------------+
-        | + getIdeas(i)             |
-        | + setIdeas(i, value)      |
-        +---------------------------+
-----
+```
+                    +-------------------+
+                    |   <<abstract>>    |
+                    |      Animal       |
+                    +-------------------+
+                    | - type: std::string
+                    +-------------------+
+                    | + getType() const
+                    | + makeSound() const = 0    ← pure virtual
+                    | + ~Animal()                ← virtual destructor
+                    +-------------------+
+                            ▲
+                ┌──────────┴──────────┐
+                │                     │
+        +-------------------+   +-------------------+
+        |       Cat         |   |       Dog         |
+        +-------------------+   +-------------------+
+        | - brain: Brain*   |   | - brain: Brain*   |
+        +-------------------+   +-------------------+
+        | + makeSound()     |   | + makeSound()     |
+        | + getBrain()      |   | + getBrain()      |
+        | + ...             |   | + ...             |
+        +-------------------+   +-------------------+
+                │                     │
+                │  Composition        │  Composition
+                │  (owns and deletes) │  (owns and deletes)
+                ▼                     ▼
+                +---------------------------+
+                |           Brain           |  
+                +---------------------------+ 
+                | - ideas[100]: std::string |
+                +---------------------------+
+                | + getIdeas(i)             |
+                | + setIdeas(i, value)      |
+                +---------------------------+
+```
 The above informal interface is not a valid construct in C++; it is just a documentation aid. In particular, it does not contain any data members or definitions of
 member functions. Nonetheless, it is useful, since it provides important information about a stack’s public member functions and how they are called.
 
