@@ -46,6 +46,8 @@ const std::string& Animal::getType() const
     return (this->type);
 }
 
+
+// You don't need to implement this One : 
 void Animal::makeSound() const
 {
     std::cout << "Animal Sound !" << std::endl;

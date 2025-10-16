@@ -183,8 +183,9 @@ for all pure virtual functions of the base class.
         | + clone(): AMateria*  |              | + clone(): AMateria*    |
         | + use(target)         |              | + use(target)           |
         +-----------------------+              +-------------------------+
+```
 
-
+```
 +---------------------+
 |   ICharacter        |  <<Interface>>
 +---------------------+
@@ -206,8 +207,9 @@ for all pure virtual functions of the base class.
 | + unequip(idx: int)      |
 | + use(idx: int, target: ICharacter&) |
 +---------------------+
+```
 
-
+```
 +----------------------+
 |   IMateriaSource     |  <<Interface>>
 +----------------------+

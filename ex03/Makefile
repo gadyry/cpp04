@@ -2,7 +2,7 @@ NAME =  Interface
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp AMateria.cpp AMateria.cpp    Character.cpp    IMateriaSource.cpp      MateriaSource.cpp  
+SRC = main.cpp   Ice.cpp Cure.cpp AMateria.cpp   #Character.cpp    IMateriaSource.cpp      MateriaSource.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -10,7 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.cpp AMateria.hpp     Character.hpp    ICharacter.hpp   IMateriaSource.hpp     MateriaSource.hpp
+%.o: %.cpp AMateria.hpp  Ice.hpp Cure.hpp   #Character.hpp    ICharacter.hpp   IMateriaSource.hpp     MateriaSource.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:

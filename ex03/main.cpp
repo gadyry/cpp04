@@ -1,0 +1,46 @@
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include <iostream>
+
+int main()
+{
+    std::cout << "\n--- Testing Ice ---" << std::endl;
+    {
+        AMateria* ice1 = new Ice();
+        AMateria* ice2 = ice1->clone();
+
+        std::cout << "ice1 type: " << ice1->getType() << std::endl;
+        std::cout << "ice2 type (cloned): " << ice2->getType() << std::endl;
+
+        delete ice1;
+        delete ice2;
+    }
+
+    std::cout << "\n--- Testing Cure ---" << std::endl;
+    {
+        AMateria* cure1 = new Cure();
+        AMateria* cure2 = cure1->clone();
+
+        std::cout << "cure1 type: " << cure1->getType() << std::endl;
+        std::cout << "cure2 type (cloned): " << cure2->getType() << std::endl;
+
+        delete cure1;
+        delete cure2;
+    }
+
+    std::cout << "\n--- Copy and Assignment Test ---" << std::endl;
+    {
+        Ice iceOriginal;
+        Ice iceCopy(iceOriginal);
+        Ice iceAssigned;
+        iceAssigned = iceOriginal;
+
+        Cure cureOriginal;
+        Cure cureCopy(cureOriginal);
+        Cure cureAssigned;
+        cureAssigned = cureOriginal;
+    }
+
+    std::cout << "\n--- Test completed successfully ---" << std::endl;
+    return 0;
+}
