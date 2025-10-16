@@ -25,7 +25,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
     std::cout << "WrongAnimal copy assignment operator called" << std::endl;
     if (this != &other)
         this->type = other.type;
-    return *this;
+    return (*this);
 }
 
 // Destructor
