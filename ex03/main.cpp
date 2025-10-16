@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::cout << "================ sub-typing polymorphism : ================\n\n";
+    std::cout << "================ abstract classes : ================\n\n";
 
     std::cout << "=============== Testing with a virtual method :   ==============\n"<<std::endl;
     // const Animal* meta = new Animal(); //  Not allowed

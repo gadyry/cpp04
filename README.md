@@ -59,7 +59,45 @@ int main() {
 Dog destroyed
 Animal destroyed
 
+
+### 🧩 1️⃣ Composition, not Aggregation : 
+
+| Relationship Type | Description                                                                                                                         | Example                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Composition**   | A strong “has-a” relationship. The child object **cannot exist without** the parent. The parent **owns** the lifetime of the child. | A `Cat` **has a** `Brain`. When `Cat` dies, its `Brain` is deleted too.              |
+| **Aggregation**   | A weak “has-a” relationship. The child can exist independently and is **not owned** by the parent.                                  | A `Teacher` **has** a `Classroom` pointer, but the `Classroom` exists independently. |
+
+### 🧩 2️⃣ Why Cat–Brain is Composition
+
+✅ Brain is created inside the Cat constructor.
+✅ It is deleted inside the Cat destructor.
+✅ Brain cannot exist without Cat.
+✅ Each Cat has its own unique Brain.
+
+Hence, this is a composition relationship.
+
+If it were aggregation, you would pass the Brain from outside:
+
+```cpp
+class Cat
+{
+private:
+    Brain* brain;
+public:
+    Cat(Brain* existingBrain) : brain(existingBrain) {}
+};
+```
+
+| Concept         | Definition                         | Example                                   |
+| --------------- | ---------------------------------- | ----------------------------------------- |
+| **Composition** | Strong ownership (“part-of”)       | `Cat` owns its `Brain` — deleted together |
+| **Aggregation** | Weak ownership (“associated-with”) | `Teacher` refers to `Classroom` not owned |
+| **Inheritance** | “Is-a” relationship                | `Cat` **is-a** `Animal`                   |
+
+
+
 ### 🧩 Abstract Class vs Interface :
+
 
 | **Feature**     | **Abstract Class (C++)**                                 | **Interface (Java / C++)**                                        |
 | --------------- | -------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -68,3 +106,41 @@ Animal destroyed
 | **Use**         | Used as a common base with partial shared code           | Defines a strict contract — no implementation                     |
 | **In C++**      | Declared with at least one pure virtual function (`= 0`) | A class with *only* pure virtual functions acts as an interface   |
 | **In Java**     | Declared with the `abstract` keyword                     | Declared with the `interface` keyword (dedicated syntax)          |
+
+
+--> here’s a text-based Class diagram that clearly shows the relationships in your CPP04/ex02 setup — including inheritance and composition:
+
+            +-------------------+
+            |   <<abstract>>    |
+            |      Animal       |<──────────────┐
+            +-------------------+               │
+            | - type: std::string                │
+            +-------------------+               │
+            | + getType() const                 │
+            | + makeSound() const = 0           │  (pure virtual)
+            | + ~Animal()                       │  (virtual destructor)
+            +-------------------+               │
+                                                │
+              ┌─────────────────────────────────┘
+              │
+  +-------------------+               +-------------------+
+  |       Cat         |               |       Dog         |
+  +-------------------+               +-------------------+
+  | - brain: Brain*   |               | - brain: Brain*   |
+  +-------------------+               +-------------------+
+  | + makeSound()     |               | + makeSound()     |
+  | + getBrain()      |               | + getBrain()      |
+  | + ...             |               | + ...             |
+  +-------------------+               +-------------------+
+             │                                │
+             │  Composition                   │  Composition
+             │  (owns and deletes)            │  (owns and deletes)
+             ▼                                ▼
+       +-------------------+            +-------------------+
+       |      Brain        |            |      Brain        |
+       +-------------------+            +-------------------+
+       | - ideas[100]: string           | - ideas[100]: string
+       +-------------------+            +-------------------+
+       | + getIdeas(i)                 | + setIdeas(i, str)
+       | + ...                         | + ...
+       +-------------------+            +-------------------+
