@@ -8,12 +8,15 @@ int main()
     {
         AMateria* ice1 = new Ice();
         AMateria* ice2 = ice1->clone();
+        AMateria* ice3 = new Ice("Lea Sydoux !");
 
         std::cout << "ice1 type: " << ice1->getType() << std::endl;
         std::cout << "ice2 type (cloned): " << ice2->getType() << std::endl;
+         std::cout << "ice3 type (cloned): " << ice3->getType() << std::endl;
 
         delete ice1;
         delete ice2;
+        delete ice3;
     }
 
     std::cout << "\n--- Testing Cure ---" << std::endl;
