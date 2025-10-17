@@ -36,6 +36,10 @@ Character::~Character()
         if (inventory[i])
             delete inventory[i];
     }
+
+    for (int i = 0; i < unequippedCount; i++)
+        delete unequipped[i];
+
     std::cout << "Character destructor called" << std::endl;
 }
 
@@ -56,8 +60,44 @@ AMateria* Character::getInvontory(int index) const
     return (NULL);
 }
 
-void    setInvontory(int index, AMateria& inventory)
+void    Character::setInvontory(int index, AMateria* materia)
 {
-    // TODO :
+    if (index >= 0 && index < 4)
+    {
+        if (this->inventory[index])
+            delete this->inventory[index];
     
+        this->inventory[index] = materia;
+    }
+}
+
+// Put the given Materia (m) into the first empty slot (from 0 → 3).
+void Character::equip(AMateria* m)
+{
+    for(int i = 0; i < 4; i++)
+    {
+        if (!this->inventory[i])
+        {
+            this->inventory[i] = m;
+            break;
+        }
+    }
+}
+
+// Remove the Materia from the given slot without deleting it.
+void Character::unequip(int idx)
+{
+    if (idx >= 0 && idx < 4 && this->inventory[idx])
+    {
+        if (unequippedCount < 4)
+            unequipped[unequippedCount++] = this->inventory[idx];
+
+            this->inventory[idx] = NULL;
+    }
+}
+
+// Use the Materia in slot idx on the target character
+void Character::use(int idx, ICharacter& target)
+{
+
 }

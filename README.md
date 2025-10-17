@@ -186,27 +186,27 @@ for all pure virtual functions of the base class.
 ```
 
 ```
-+---------------------+
-|   ICharacter        |  <<Interface>>
-+---------------------+
-| + getName() const = 0        |
-| + equip(m: AMateria*) = 0    |
-| + unequip(idx: int) = 0      |
++------------------------------------------+
+|   ICharacter          <<Interface>>      |
++------------------------------------------+
+| + getName() const = 0                    |
+| + equip(m: AMateria*) = 0                |
+| + unequip(idx: int) = 0                  |
 | + use(idx: int, target: ICharacter&) = 0 |
-+---------------------+
-          ▲
-          │
-+---------------------+
-|   Character         |
-+---------------------+
-| - _name: std::string    |
-| - _inventory[4]: AMateria* |
-+---------------------+
-| + getName() const        |
-| + equip(m: AMateria*)    |
-| + unequip(idx: int)      |
++------------------------------------------+
+                    ▲
+                    │
++--------------------------------------+
+|   Character                          |
++--------------------------------------+
+| - _name: std::string                 |
+| - _inventory[4]: AMateria*           |
++--------------------------------------+
+| + getName() const                    |
+| + equip(m: AMateria*)                |
+| + unequip(idx: int)                  |
 | + use(idx: int, target: ICharacter&) |
-+---------------------+
++--------------------------------------+
 ```
 
 ```
