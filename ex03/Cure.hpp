@@ -15,7 +15,7 @@ public :
     ~Cure();
 
     AMateria* clone() const;
-    // virtual void use(ICharacter& target);
+    virtual void use(ICharacter& target);
 
 };
 

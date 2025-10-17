@@ -99,5 +99,6 @@ void Character::unequip(int idx)
 // Use the Materia in slot idx on the target character
 void Character::use(int idx, ICharacter& target)
 {
-
+    if (idx >= 0 && idx < 4 && this->inventory[idx])
+        this->inventory[idx]->use(target);
 }
