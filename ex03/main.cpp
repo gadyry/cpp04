@@ -87,11 +87,12 @@ int main()
     src->learnMateria(new Cure());
 
     std::cout << "\n=== [ STEP 2: Create Characters ] ===" << std::endl;
-    ICharacter* me = new Character("David");
-    ICharacter* enemy = new Character("Goblin");
+    Character* me = new Character("David");
+    Character* enemy = new Character("Goblin");
 
     std::cout << "\n=== [ STEP 3: Create and Equip Materias ] ===" << std::endl;
     AMateria* tmp;
+
     tmp = src->createMateria("ice");
     me->equip(tmp);
 
@@ -108,23 +109,22 @@ int main()
     std::cout << "\n--- Trying to equip more than 4 Materias ---" << std::endl;
     tmp = src->createMateria("ice");
     me->equip(tmp); // should be ignored
-    delete tmp;     // clean manually
+    delete tmp;     // clean manually (since equip() refused it)
 
     std::cout << "\n=== [ STEP 4: Using Materias ] ===" << std::endl;
     me->use(0, *enemy);
     me->use(1, *enemy);
     me->use(2, *enemy);
     me->use(3, *enemy);
-
-    // invalid index
-    me->use(5, *enemy);
+    me->use(5, *enemy); // invalid index -> should do nothing
 
     std::cout << "\n=== [ STEP 5: Unequip Materia ] ===" << std::endl;
-    me->unequip(2); // should not delete
-    me->use(2, *enemy); // should do nothing
+    me->unequip(2); // should not delete the Materia
+    me->use(2, *enemy); // should do nothing (slot empty)
 
     std::cout << "\n=== [ STEP 6: Copy Character (Deep Copy Test) ] ===" << std::endl;
-    Character copy = *(dynamic_cast<Character*>(me));
+    Character copy(*me); // ✅ Copy constructor (deep copy)
+
     std::cout << "Original name: " << me->getName() << std::endl;
     std::cout << "Copy name:     " << copy.getName() << std::endl;
 
@@ -132,12 +132,51 @@ int main()
     copy.use(0, *enemy);
     copy.use(1, *enemy);
 
-    std::cout << "\n=== [ STEP 7: Destructor test ===" << std::endl;
+    std::cout << "\n--- Modifying copy ---" << std::endl;
+    copy.unequip(0); // this should not affect 'me'
+    std::cout << "Copy unequipped slot 0.\n";
+    std::cout << "Using original again to verify deep copy:" << std::endl;
+    me->use(0, *enemy); // should still work → proves deep copy
+
+
+    // std::cout << "\n=== [ STEP 8: Copy Assignment Test ] ===" << std::endl;
+
+    //     // Create a new character to test assignment
+    //     Character assignTest("AssignTest");
+
+    //     // Equip original character with Materias
+    //     assignTest.equip(src->createMateria("ice"));
+    //     assignTest.equip(src->createMateria("cure"));
+
+    //     // Perform copy assignment from 'me' to 'assignTest'
+    //     assignTest = *(dynamic_cast<Character*>(me));
+
+    //     // Verify names
+    //     std::cout << "Original name: " << me->getName() << std::endl;
+    //     std::cout << "Assigned name: " << assignTest.getName() << std::endl;
+
+    //     // Verify that Materias are deep-copied
+    //     std::cout << "\n--- Using Materias from assigned character ---" << std::endl;
+    //     for (int i = 0; i < 4; i++)
+    //     {
+    //         std::cout << "Slot " << i << ": ";
+    //         assignTest.use(i, *enemy);
+    //     }
+
+    //     // Unequip a Materia from assigned character to check independence
+    //     assignTest.unequip(0);
+    //     std::cout << "\n--- After unequipping slot 0 from assigned character ---" << std::endl;
+    //     assignTest.use(0, *enemy); // should do nothing
+    //     me->use(0, *enemy);        // original should still work
+
+    //     std::cout << "\n--- End of Copy Assignment Test ---" << std::endl;
+
+
+    std::cout << "\n=== [ STEP 7: Destructor Test ] ===" << std::endl;
     delete enemy;
     delete me;
     delete src;
 
     std::cout << "\n=== [ END TEST - check for leaks ] ===" << std::endl;
-
     return 0;
 }

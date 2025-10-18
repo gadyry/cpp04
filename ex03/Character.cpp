@@ -1,36 +1,62 @@
 #include "Character.hpp"
 
-Character::Character() : name("Unknown")
+Character::Character() : name("Unknown"), unequippedCount(0)
 {
     for (int i = 0; i < 4; i++)
+    {
         this->inventory[i] = NULL;
+        this->unequipped[i] = NULL;
+    }
 }
 
-Character::Character(std::string const & name) : name(name)
+Character::Character(std::string const & name) : name(name), unequippedCount(0)
 {
     for (int i = 0; i < 4; i++)
+    {
         this->inventory[i] = NULL;
+        this->unequipped[i] = NULL;
+    }
 }
 
-Character::Character(const Character& other) { *this = other; }
+Character::Character(const Character& other) : name(other.name), unequippedCount(other.unequippedCount)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        this->inventory[i] = NULL;
+        this->unequipped[i] = NULL;
+    }
+    *this = other; 
+}
 
 Character& Character::operator=(const Character& other)
 {
     if (this != &other)
     {
-        this->name = other.name;
+        name = other.name;
 
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            delete this->inventory[i];
-
+            delete inventory[i];
             if (other.inventory[i])
-                this->inventory[i] = other.inventory[i]->clone();
+                inventory[i] = other.inventory[i]->clone();
             else
-                this->inventory[i] = NULL;
+                inventory[i] = NULL;
+        }
+
+        for (int i = 0; i < unequippedCount; i++)
+            delete unequipped[i];
+
+        unequippedCount = other.unequippedCount;
+
+        for (int i = 0; i < unequippedCount; i++)
+        {
+            if (other.unequipped[i] != NULL)
+                unequipped[i] = other.unequipped[i]->clone();
+            else
+                unequipped[i] = NULL;
         }
     }
-    return (*this);
+    return *this;
 }
 
 Character::~Character()
