@@ -1,8 +1,16 @@
 #include "Character.hpp"
 
-Character::Character() : name("Unknown")  {}
+Character::Character() : name("Unknown")
+{
+    for (int i = 0; i < 4; i++)
+        this->inventory[i] = NULL;
+}
 
-Character::Character(std::string const & name) : name(name)  {}
+Character::Character(std::string const & name) : name(name)
+{
+    for (int i = 0; i < 4; i++)
+        this->inventory[i] = NULL;
+}
 
 Character::Character(const Character& other) { *this = other; }
 
@@ -11,15 +19,11 @@ Character& Character::operator=(const Character& other)
     if (this != &other)
     {
         this->name = other.name;
-        
-        for(int i = 0; i < 4; i++)
-        {
-            delete this->inventory[i];
-            this->inventory[i] = NULL;
-        }
 
         for(int i = 0; i < 4; i++)
         {
+            delete this->inventory[i];
+
             if (other.inventory[i])
                 this->inventory[i] = other.inventory[i]->clone();
             else
@@ -74,12 +78,15 @@ void    Character::setInvontory(int index, AMateria* materia)
 // Put the given Materia (m) into the first empty slot (from 0 → 3).
 void Character::equip(AMateria* m)
 {
+    if (!m)
+        return ;
+
     for(int i = 0; i < 4; i++)
     {
         if (!this->inventory[i])
         {
             this->inventory[i] = m;
-            break;
+            return;
         }
     }
 }

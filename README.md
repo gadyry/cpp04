@@ -221,7 +221,7 @@ for all pure virtual functions of the base class.
 +----------------------+
 |   MateriaSource      |
 +----------------------+
-| - _materias[4]: AMateria* |
+| - materias[4]: AMateria* |
 +----------------------+
 | + learnMateria(m: AMateria*) |
 | + createMateria(type: std::string) |
