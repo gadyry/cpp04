@@ -1,5 +1,7 @@
 ###  Polymorphism
 
+![alt text](https://file%2B.vscode-resource.vscode-cdn.net/Users/ael-gady/Desktop/cpp04/Polymorphism-Aticleworld-min.jpeg?version%3D1760793435649)
+
 🧩 The Rule About virtual Destructors
 
 If your class is meant to be inherited from (i.e. used as a base class) and it contains at least one virtual function,
