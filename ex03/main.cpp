@@ -52,29 +52,92 @@
 // }
 
 
+// int main()
+// {
+//     IMateriaSource* src = new MateriaSource();
+
+//     src->learnMateria(new Ice());
+//     src->learnMateria(new Cure());
+
+//     ICharacter* me = new Character("me");
+
+//     AMateria* tmp;
+
+//     tmp = src->createMateria("ice");
+//     me->equip(tmp);
+//     tmp = src->createMateria("cure");
+//     me->equip(tmp);
+
+//     ICharacter* bob = new Character("bob");
+//     me->use(0, *bob);
+//     me->use(1, *bob);
+
+//     delete bob;
+//     delete me;
+//     delete src;
+
+//     return 0;
+// }
+
 int main()
 {
+    std::cout << "\n=== [ STEP 1: Create Materia Source ] ===" << std::endl;
     IMateriaSource* src = new MateriaSource();
-
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
-    ICharacter* me = new Character("me");
+    std::cout << "\n=== [ STEP 2: Create Characters ] ===" << std::endl;
+    ICharacter* me = new Character("David");
+    ICharacter* enemy = new Character("Goblin");
 
+    std::cout << "\n=== [ STEP 3: Create and Equip Materias ] ===" << std::endl;
     AMateria* tmp;
-
     tmp = src->createMateria("ice");
     me->equip(tmp);
+
     tmp = src->createMateria("cure");
     me->equip(tmp);
 
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
 
-    delete bob;
+    tmp = src->createMateria("cure");
+    me->equip(tmp);
+
+    // Try to equip one more than 4 -> should do nothing
+    std::cout << "\n--- Trying to equip more than 4 Materias ---" << std::endl;
+    tmp = src->createMateria("ice");
+    me->equip(tmp); // should be ignored
+    delete tmp;     // clean manually
+
+    std::cout << "\n=== [ STEP 4: Using Materias ] ===" << std::endl;
+    me->use(0, *enemy);
+    me->use(1, *enemy);
+    me->use(2, *enemy);
+    me->use(3, *enemy);
+
+    // invalid index
+    me->use(5, *enemy);
+
+    std::cout << "\n=== [ STEP 5: Unequip Materia ] ===" << std::endl;
+    me->unequip(2); // should not delete
+    me->use(2, *enemy); // should do nothing
+
+    std::cout << "\n=== [ STEP 6: Copy Character (Deep Copy Test) ] ===" << std::endl;
+    Character copy = *(dynamic_cast<Character*>(me));
+    std::cout << "Original name: " << me->getName() << std::endl;
+    std::cout << "Copy name:     " << copy.getName() << std::endl;
+
+    std::cout << "\n--- Using Materias from copy ---" << std::endl;
+    copy.use(0, *enemy);
+    copy.use(1, *enemy);
+
+    std::cout << "\n=== [ STEP 7: Destructor test ===" << std::endl;
+    delete enemy;
     delete me;
     delete src;
+
+    std::cout << "\n=== [ END TEST - check for leaks ] ===" << std::endl;
 
     return 0;
 }
